@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fragments="clr-namespace:CarouselTest.Fragments"
+             xmlns:carouselTest="clr-namespace:CarouselTest"
+             x:DataType="carouselTest:MainPageViewModel"
+             x:Class="CarouselTest.MainPage">
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="fragmentOneItemTemplate">
+            <ContentView>
+                <fragments:FragmentOne />
+            </ContentView>
+        </DataTemplate>
+        
+        <DataTemplate
+            x:Key="fragmentTwoItemTemplate">
+            <ContentView>
+                <fragments:FragmentTwo />
+            </ContentView>
+        </DataTemplate>
+        
+        <carouselTest:MainPageDataTemplateSelector
+            x:Key="dataTemplateSelector"
+            FragmentOneItemTemplate="{StaticResource fragmentOneItemTemplate}"
+            FragmentTwoItemTemplate="{StaticResource fragmentTwoItemTemplate}"/>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="*,80">
+        <CarouselView
+            Grid.Row="0"
+            Position="{Binding PagePosition}"
+            ItemsSource="{Binding DashboardItems}"
+            IsSwipeEnabled="False"
+            IsScrollAnimated="False"
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Never"
+            Loop="False"
+            ItemTemplate="{StaticResource dataTemplateSelector}"/>
+        
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Spacing="15"
+            HorizontalOptions="Center">
+            
+            <Button 
+                Text="Fragment One"
+                Command="{Binding FragmentOneButtonTappedCommand}"
+                Height="40"
+                Width="100"
+                BackgroundColor="Red"/>
+            
+            <Button 
+                Text="Fragment Two"
+                Command="{Binding FragmentTwoButtonTappedCommand}"
+                Height="40"
+                Width="100"
+                BackgroundColor="Red"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

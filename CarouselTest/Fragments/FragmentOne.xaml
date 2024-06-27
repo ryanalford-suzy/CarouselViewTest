@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:carouselTest="clr-namespace:CarouselTest"
+             x:DataType="carouselTest:DashboardItem"
+             x:Class="CarouselTest.Fragments.FragmentOne">
+    <Grid>
+        <Label 
+            Text="Fragment One"
+            FontSize="27"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+        
+        <Button
+            HeightRequest="30"
+            BackgroundColor="Blue"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Margin="0,0,0,40"
+            Text="Open Second Page"
+            Command="{Binding ViewModel.OpenPageCommand}"/>
+    </Grid>
+</ContentView>
